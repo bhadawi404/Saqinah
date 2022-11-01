@@ -33,20 +33,7 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{ github.run_number}}
           token: ${{ secrets.TOKEN}}
-      - name: Get Slack web hook
-        uses: haya14busa/action-cond@v1
-        id: slackwebhook
-        with:
-          cond: ${{ steps.brach.output.branch == 'master'}}
-          if true: ${{ secrets.SLACKWEBHOOK}}
-      - name: Notify on slack channel
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: ${{ steps.brach.output.branch }}
-          SLACK_COLOR: ${{ job.status}}
-          SLACK_MESSAGE: https://github.com/bhadawi404/Saqinah/releases/v1.0.${{ github.run_number}}
-          SLACK_USERNAME: Saqinah-bot
-          SLACK_WEBHOOK: ${{ steps.slackwebhook.output.value}}
+      
 
 
 
